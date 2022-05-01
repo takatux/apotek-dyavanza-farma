@@ -59,14 +59,22 @@
     }
 }
 
+.item-img-wrap{
+    margin: 20px;
+    border: 3px solid #DCDCDC;
+}
+
 img {
     width: 300px; 
     height: 300px; 
-    border: 1px solid black
 }
 button {
     width: 50px;
     height: 40px;
     border: 1px solid black;
+}
+.show-name {
+    text-decoration: none;
+    color: black;
 }
   

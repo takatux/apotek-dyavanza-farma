@@ -8,8 +8,8 @@
 	
     <div class="content">
         <form method="POST" action="{{ url('pemain') }}"> 
-            <h1 class="text-center text-uppercase">APOTEK DYAFANZA FARMA</h1>
-            <p class="text-center">DAFTAR OBAT APOTEK DYAFANZA FARMA</p><br>
+            <h1 class="text-center text-uppercase">APOTEK DYVANZA FARMA</h1>
+            <p class="text-center">DAFTAR OBAT APOTEK DYVANZA FARMA</p><br>
             <div class="topnav">        
                 <div class="search-container">
                     <form action="/action_page.php">
@@ -24,12 +24,13 @@
                     @foreach ($data as $item)
                         <div class="mix col-sm-4 margin30">
                             <div class="item-img-wrap">
-                                <img src="{{asset('assets/img/obat/'.$item['image'])}}" class="rounded mx-auto d-block" alt="image pemain" style="">
-                                <div class="item-img-overlay">
-                                    <a href="#" class="show-image">
-                                        <center><h5><span>{{$item['nama']}}</span></h5></center>
-                                    </a>
-                                </div>
+                                <a href="#" class="show-name">
+                                    <img src="{{asset('assets/img/obat/'.$item['image'])}}" class="rounded mx-auto d-block" alt="image pemain" style="">
+                                    <div class="item-img-overlay">
+                                        <center><h5><span>{{$item['nama']}} / Rp. {{$item['harga']}}</span></h5></center> 
+                                        <center><span>Stok {{$item['stok']}}</span></center>       
+                                    </div>
+                                </a>
                             </div> 
                         </div>                                                    
                     @endforeach
