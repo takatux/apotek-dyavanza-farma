@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Obat;
 use Illuminate\Http\Request;
 
 class HomeAdminController extends Controller
@@ -10,6 +11,7 @@ class HomeAdminController extends Controller
     //
     public function index()
     {
-        return view('admin.home-admin');
+        $data = Obat::select('*')->get();
+        return view('admin.home-admin', compact('data'));
     }
 }
