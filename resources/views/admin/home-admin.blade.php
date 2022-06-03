@@ -13,6 +13,7 @@
             <div class="topnav">        
                 <div class="search-container">
                     <form action="/action_page.php">
+                        <a href="" style="position: absolute; left: 20px;"><b>Tambah Obat</b></a>
                         <input type="text" placeholder="Search . . " name="search">
                         <button type="submit"><i class="bi bi-search"></i></button>
                     </form>
