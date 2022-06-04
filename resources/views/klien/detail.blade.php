@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <form method="POST" action="{{route('admin-update',$data[0]->id_obat)}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('klien-pemesanan', $data[0]->id_obat)}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -29,7 +29,7 @@
                             <label for="nama" class="col-md-4 col-form-label text-md-end">{{ __('Nama') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $data[0]->nama }}" disabled>
+                                <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $data[0]->nama }}" readonly>
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@
                             <label for="komposisi" class="col-md-4 col-form-label text-md-end">{{ __('Komposisi') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="komposisi" name="komposisi" class="form-control @error('komposisi') is-invalid @enderror" rows="4" cols="50" disabled>{{$data[0]->komposisi}}</textarea>
+                                <textarea id="komposisi" name="komposisi" class="form-control @error('komposisi') is-invalid @enderror" rows="4" cols="50" readonly>{{$data[0]->komposisi}}</textarea>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                             <label for="jenis_produk" class="col-md-4 col-form-label text-md-end">{{ __('Jenis Produk') }}</label>
 
                             <div class="col-md-6">
-                                <input id="jenis_produk" type="text" class="form-control @error('jenis_produk') is-invalid @enderror" name="jenis_produk" value="{{ $data[0]->jenis_produk }}" disabled>
+                                <input id="jenis_produk" type="text" class="form-control @error('jenis_produk') is-invalid @enderror" name="jenis_produk" value="{{ $data[0]->jenis_produk }}" readonly>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                             <label for="harga" class="col-md-4 col-form-label text-md-end">{{ __('Harga') }}</label>
 
                             <div class="col-md-6">
-                                <input id="harga" type="number" class="form-control @error('harga') is-invalid @enderror" name="harga" onkeyup="sum();" value="{{ $data[0]->harga }}" disabled>
+                                <input id="harga" type="number" class="form-control @error('harga') is-invalid @enderror" name="harga" onkeyup="sum();" value="{{ $data[0]->harga }}" readonly>
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@
                             <label for="stok" class="col-md-4 col-form-label text-md-end">{{ __('Stok') }}</label>
 
                             <div class="col-md-6">
-                                <input id="stok" type="number" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ $data[0]->stok }}" disabled>
+                                <input id="stok" type="number" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ $data[0]->stok }}" readonly>
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@
                             <label for="jumlah" class="col-md-4 col-form-label text-md-end">{{ __('Total Harga') }}</label>
 
                             <div class="col-md-3">
-                                <input id="jumlah" type="number" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah">
+                                <input id="jumlah" type="number" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" readonly>
                             </div>
                             
                         </div>

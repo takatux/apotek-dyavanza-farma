@@ -46,7 +46,14 @@
         <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
       </div>
       <div class="d-flex align-items-center">
-        <i class="bi bi-phone"></i> Call us now +1 5589 55488 55
+        @if(Auth::user())
+          @if(\Auth::user()->username != "admin")
+            <a href="{{route('klien-keranjang')}}"><i class="bi bi-cart4" style="color: white;"></i></a>
+          @else
+            <a href=""><i class="bi bi-shop" style="color: white;"></i></a>
+          @endif
+        @endif
+        
       </div>
     </div>
   </div>
@@ -65,7 +72,11 @@
           @if(\Auth::user())
           <li class="dropdown"><a style="color: #008B8B;" href="#">{{Auth()->user()->nama}}</i></a>
             <ul>
+              @if(Auth::user()->username === "admin")
               <li><a href="{{ route('home-admin') }}">Daftar Obat</a></li>
+              @else
+              <li><a href="{{ route('home-klien') }}">Daftar Obat</a></li>
+              @endif
               <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
                 {{ csrf_field() }}

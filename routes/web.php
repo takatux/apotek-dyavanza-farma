@@ -42,5 +42,7 @@ Route::group(['prefix'=>'klien', 'middleware'=>['isKlien','auth']], function(){
     Route::get('/home', [HomeKlienController::class, 'index'])->name('home-klien');
     Route::get('/getData', [HomeKlienController::class, 'getData'])->name('klien-getData');
     Route::get('/detail/{id}', [HomeKlienController::class, 'show'])->name('klien-detail');
+    Route::post('/detail/{id}', [HomeKlienController::class, 'pemesanan'])->name('klien-pemesanan');
+    Route::get('/keranjang', [HomeKlienController::class, 'keranjang'])->name('klien-keranjang');
 });
 
