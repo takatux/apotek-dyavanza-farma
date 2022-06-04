@@ -86,7 +86,11 @@
 
             },
             columns:[
-                    {data: 'id_obat', name: 'id_obat'},
+                    {data: 'id_obat',
+                        render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
                     {data: 'nama', name: 'nama'},
                     {data: 'jenis_produk', name: 'jenis_produk'},
                     {data: 'harga', name: 'harga'},

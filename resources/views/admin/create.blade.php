@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <form method="POST" action="{{route('admin-store')}}">
+                    <form method="POST" action="{{route('admin-store')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -94,7 +94,7 @@
                             <label for="stok" class="col-md-4 col-form-label text-md-end">{{ __('Stok') }}</label>
 
                             <div class="col-md-6">
-                                <input id="stok" type="text" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ old('stok') }}" required autocomplete="stok">
+                                <input id="stok" type="number" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ old('stok') }}" required autocomplete="stok">
 
                                 @error('stok')
                                     <span class="invalid-feedback" role="alert">
@@ -104,12 +104,12 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="upload" class="col-md-4 col-form-label text-md-end">{{ __('Upload Image') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Upload Image') }}</label>
 
                             <div class="col-md-6">
-                                <input id="upload" type="file" class="form-control @error('upload') is-invalid @enderror" name="upload" value="{{ old('upload') }}" required autocomplete="upload">
+                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required autocomplete="image">
 
-                                @error('upload')
+                                @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
