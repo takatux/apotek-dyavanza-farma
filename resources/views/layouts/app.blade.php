@@ -62,12 +62,24 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto " href="{{url('/home')}}">Home</a></li>
+          @if(\Auth::user())
+          <li class="dropdown"><a style="color: #008B8B;" href="#">{{Auth()->user()->nama}}</i></a>
+            <ul>
+              <li><a href="{{ route('home-admin') }}">Daftar Obat</a></li>
+              <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                {{ csrf_field() }}
+              </form>
+            </ul>
+          </li>
+          @else
+          <li><a class="nav-link scrollto " style="color: blue;" href="{{route('register')}}">Register</a></li>
+          @endif
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="{{ route('login') }}" class="appointment-btn scrollto"><span class="d-none d-md-inline">Login</a>
-
+      
     </div>
   </header><!-- End Header -->
 

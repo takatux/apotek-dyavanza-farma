@@ -23,6 +23,7 @@ Route::get('/home', function () {
 });
 
 Auth::routes();
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register-klien');
 

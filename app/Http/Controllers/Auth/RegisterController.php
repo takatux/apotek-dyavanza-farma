@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Alert;
 
 class RegisterController extends Controller
 {
@@ -84,6 +85,7 @@ class RegisterController extends Controller
         $data->password = $hash_Password;
         $data->save();
 
+        Alert::success('Success!', 'Anda Berhasil Register');
         return redirect('/login');
     }
 }
