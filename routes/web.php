@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeAdminController ;
+use App\Http\Controllers\Klien\HomeKlienController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']], function(){
 });
 
 Route::group(['prefix'=>'klien', 'middleware'=>['isKlien','auth']], function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeKlienController::class, 'index'])->name('home-klien');
+    Route::get('/getData', [HomeKlienController::class, 'getData'])->name('klien-getData');
+    Route::get('/detail/{id}', [HomeKlienController::class, 'show'])->name('klien-detail');
 });
 
