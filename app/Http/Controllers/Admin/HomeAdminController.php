@@ -14,19 +14,19 @@ class HomeAdminController extends Controller
     //
     public function index()
     {
-        $data = Obat::select('*')->get();
+        $data = Obat::select('*')->where('status', 'aktif')->get();
         return view('admin.home-admin', compact('data'));
     }
 
     public function getData()
     {
-        $data = Obat::orderBy('created_at', 'desc');
+        $data = Obat::where('status', 'aktif')->orderBy('created_at', 'desc');
         return Datatables::of($data)->addIndexColumn()
                         ->addColumn('aksi', function($row){
                             return 
-                            '<a href="#">
+                            '<a href="'.route('admin-edit', $row->id_obat).'">
                             <i class="bi bi-pen-fill"></i> </a> 
-                            <a class="btn-link-danger modal-deletetab1" href="#" data-id="'.$row->no_pasien.'">
+                            <a class="btn-link-danger modal-deletetab1" href="#" data-id="'.$row->id_obat.'">
                             <i class="bi bi-trash-fill" style="color:red"></i> </a>';
                         })
                         ->rawColumns(['aksi'])
@@ -67,7 +67,7 @@ class HomeAdminController extends Controller
             $filePath = base_path("public/assets/img/obat");
             $file->move($filePath, $filename);
             $result->update([
-                "image" =>  env('APP_URL').''. "public/assets/img/obat" .''.$filename
+                "image" => $filename
             ]);
         }
 
@@ -101,26 +101,31 @@ class HomeAdminController extends Controller
             'stok',
             'image',
         ]);
-
-        $obat = new Obat();
-        $result = $obat->create($input);
-
+        $obat = Obat::where('id_obat', $id)->first();
+        $result = $obat->update($input);
 
         if(!empty($input['image'])) 
         {
             $file = $input['image'];
-            $folder = 'public/assets/img/obat/';
             $filename = "obat_".time() . '.' . $file->getClientOriginalExtension();
-            $filePath = public_path() .''.$folder;
+            $filePath = base_path("public/assets/img/obat");
             $file->move($filePath, $filename);
-            $result->update([
-                "image" =>  env('APP_URL').''.$folder.''.$filename
+            $obat->update([
+                "image" => $filename
             ]);
         }
 
         if($result){
-            Alert::success('Success!', 'Obat Berhasil Ditambah');
+            Alert::success('Success!', 'Obat Berhasil Diubah');
             return redirect()->route('home-admin');
         }
+    }
+
+    public function delete($id)
+    {
+        $data = Obat::where('id_obat', $id)->first();
+        $data->status = "non-aktif";
+        $data->save();
+        return redirect('admin/home');
     }
 }

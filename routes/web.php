@@ -28,9 +28,12 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']], function(){
     Route::get('/home', [HomeAdminController::class, 'index'])->name('home-admin');
+    Route::get('/getData', [HomeAdminController::class, 'getData'])->name('admin-getData');
     Route::get('/create', [HomeAdminController::class, 'create'])->name('admin-create');
     Route::post('/create', [HomeAdminController::class, 'store'])->name('admin-store');
-    Route::get('/getData', [HomeAdminController::class, 'getData'])->name('admin-getData');
+    Route::get('/edit/{id}', [HomeAdminController::class, 'edit'])->name('admin-edit');
+    Route::post('/update/{id}', [HomeAdminController::class, 'update'])->name('admin-update');  
+    Route::get('/delete/{id}', [HomeAdminController::class, 'delete'])->name('admin-delete');  
 });
 
 Route::group(['prefix'=>'klien', 'middleware'=>['isKlien','auth']], function(){

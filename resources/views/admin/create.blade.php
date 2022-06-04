@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Tambah Obat') }}</div>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -119,7 +119,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Submit') }}
                                 </button>
                             </div>
                         </div>

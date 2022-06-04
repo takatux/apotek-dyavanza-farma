@@ -160,6 +160,7 @@
   <!-- Vendor JS Files -->
   <script src="{{asset('assets/vendor/purecounter/purecounter.js')}}"></script>
   <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('vendors/sweetalert/sweetalert.min.js')}}"></script>
   <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
   <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
@@ -167,7 +168,13 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
+  <script>
+    $(document).ready(function(){
+      $('.tooltipped').tooltip();
 
+      $('tabs').tabs();
+    });
+  </script>
 </body>
 
 </html>
