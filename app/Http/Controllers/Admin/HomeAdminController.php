@@ -151,7 +151,9 @@ class HomeAdminController extends Controller
     public function accPemesanan($id)
     {   
         $transaksi = TransaksiObat::where('id', $id)->first();
-        dd($transaksi);
+        $transaksi->validasi = "Berhasil";
+        $transaksi->save();
+        return redirect('/admin/pesanan');
     }
 
     public function delete($id)
