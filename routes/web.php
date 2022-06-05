@@ -39,6 +39,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']], function(){
     Route::get('/pesanan', [HomeAdminController::class, 'pesanan'])->name('admin-pesanan');
     Route::get('/getDataPemesan', [HomeAdminController::class, 'getDataPemesan'])->name('admin-getDataPemesan');
     Route::get('/acc/{id}', [HomeAdminController::class, 'accPemesanan'])->name('admin-acc-pemesanan');
+    Route::get('/decline/{id}', [HomeAdminController::class, 'declinePemesanan'])->name('admin-decline-pemesanan');
 });
 
 Route::group(['prefix'=>'klien', 'middleware'=>['isKlien','auth']], function(){

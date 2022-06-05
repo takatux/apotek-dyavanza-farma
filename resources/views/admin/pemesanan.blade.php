@@ -119,7 +119,28 @@
                     icon: "success",
                     });
                 } else {
-                    swal("Data Tidak Jadi dihapus");
+                    swal("Data Tidak Jadi ACC");
+                }
+                });
+        });
+
+        $("body").on("click", ".modal-tab-decline", function() {
+            var judulid = $(this).attr('data-id');
+            swal({
+                title: "Yakin?",
+                text: "Pesanan ini akan di Decline ?",
+                icon: "warning",
+                buttons: ["Batal", "OK"],
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/admin/decline/"+judulid+"" 
+                    swal("Data berhasil di gagalkan", {
+                    icon: "success",
+                    });
+                } else {
+                    swal("Data Tidak Jadi DECLINE");
                 }
                 });
         });

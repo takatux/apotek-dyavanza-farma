@@ -156,6 +156,14 @@ class HomeAdminController extends Controller
         return redirect('/admin/pesanan');
     }
 
+    public function declinePemesanan($id)
+    {   
+        $transaksi = TransaksiObat::where('id', $id)->first();
+        $transaksi->validasi = "Gagal";
+        $transaksi->save();
+        return redirect('/admin/pesanan');
+    }
+
     public function delete($id)
     {
         $data = Obat::where('id_obat', $id)->first();
