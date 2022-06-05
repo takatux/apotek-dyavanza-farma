@@ -84,11 +84,28 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          @if(\Auth::user())
+          <li class="dropdown"><a style="color: #008B8B;" href="#">{{Auth()->user()->nama}}</i></a>
+            <ul>
+              @if(Auth::user()->username === "admin")
+              <li><a href="{{ route('home-admin') }}">Daftar Obat</a></li>
+              @else
+              <li><a href="{{ route('home-klien') }}">Daftar Obat</a></li>
+              @endif
+              <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                {{ csrf_field() }}
+              </form>
+            </ul>
+          </li>
+          @else
+          <li><a href="{{ route('login') }}" class="nav-link scrollto" style="color: #008B8B"><span class="d-none d-md-inline">Login</a></li>
+          @endif
         </ul>
+        
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
-      <a href="{{ route('login') }}" class="appointment-btn scrollto"><span class="d-none d-md-inline">Login</a>
+      
 
     </div>
   </header><!-- End Header -->

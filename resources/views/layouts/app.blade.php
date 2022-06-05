@@ -50,7 +50,7 @@
           @if(\Auth::user()->username != "admin")
             <a href="{{route('klien-keranjang')}}"><i class="bi bi-cart4" style="color: white;"></i></a>
           @else
-            <a href=""><i class="bi bi-shop" style="color: white;"></i></a>
+            <a href="{{route('admin-pesanan')}}"><i class="bi bi-shop" style="color: white;"></i></a>
           @endif
         @endif
         

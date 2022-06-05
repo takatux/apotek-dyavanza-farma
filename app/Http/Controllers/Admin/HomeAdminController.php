@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Yajra\DataTables\DataTables;
 use Alert;
+use App\Models\TransaksiObat;
 
 class HomeAdminController extends Controller
 {
@@ -44,6 +45,7 @@ class HomeAdminController extends Controller
             'nama'  => "required",
             'komposisi' => "required",
             'jenis_produk' => "required",
+            'status' => "required",
             'harga' => "required|numeric",
             'stok'  => "required|numeric",
         ]);
@@ -54,6 +56,7 @@ class HomeAdminController extends Controller
             'jenis_produk',
             'harga',
             'stok',
+            'status',
             'image',
         ]);
 
@@ -119,6 +122,36 @@ class HomeAdminController extends Controller
             Alert::success('Success!', 'Obat Berhasil Diubah');
             return redirect()->route('home-admin');
         }
+    }
+
+
+    public function pesanan()
+    {
+        return view('admin.pemesanan');
+    }
+
+    public function getDataPemesan()
+    {
+        $data = TransaksiObat::select('*')
+                ->join('obat', 'obat.id_obat', '=', 'transaksi_obat.obat_id_obat');
+        return Datatables::of($data)->addIndexColumn()
+                ->addColumn('aksi', function($row){
+                    return 
+                    '<button href="#" data-id="'.$row->id.'" class="btn btn-primary modal-tab-acc">
+                        <i class="bi bi-check"></i>
+                    </button>
+                    <button href="#" data-id="'.$row->id.'" class="btn btn-danger modal-tab-decline">
+                        <i class="bi bi-x"></i>
+                    </button>';
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
+    }
+
+    public function accPemesanan($id)
+    {   
+        $transaksi = TransaksiObat::where('id', $id)->first();
+        dd($transaksi);
     }
 
     public function delete($id)
