@@ -32,7 +32,7 @@
                     <td>{{$item->jumlah}}</td>
                     <td>{{$item->total_harga}}</td>
                     <td>{{$item->validasi}}</td>
-                    <td><a href="https://wa.me/+6287852982548" target="_blank">Confirm</a></td>
+                    <td><a href="https://wa.me/+6285291483888" target="_blank">Confirm</a></td>
                 </tr>
                 @endforeach
             </tbody>
