@@ -136,13 +136,16 @@ class HomeAdminController extends Controller
                 ->join('obat', 'obat.id_obat', '=', 'transaksi_obat.obat_id_obat');
         return Datatables::of($data)->addIndexColumn()
                 ->addColumn('aksi', function($row){
-                    return 
-                    '<button href="#" data-id="'.$row->id.'" class="btn btn-primary modal-tab-acc">
-                        <i class="bi bi-check"></i>
-                    </button>
-                    <button href="#" data-id="'.$row->id.'" class="btn btn-danger modal-tab-decline">
-                        <i class="bi bi-x"></i>
-                    </button>';
+                    if($row->validasi != "Berhasil" && $row->validasi != "Gagal"){
+                        return 
+                        '<button href="#" data-id="'.$row->id.'" class="btn btn-primary modal-tab-acc">
+                            <i class="bi bi-check"></i>
+                        </button>
+                        <button href="#" data-id="'.$row->id.'" class="btn btn-danger modal-tab-decline">
+                            <i class="bi bi-x"></i>
+                        </button>';
+                    }   
+                    
                 })
                 ->rawColumns(['aksi'])
                 ->make(true);
@@ -151,8 +154,16 @@ class HomeAdminController extends Controller
     public function accPemesanan($id)
     {   
         $transaksi = TransaksiObat::where('id', $id)->first();
+        $obat = Obat::where('transaksi_obat.id', $id)->join('transaksi_obat', 'transaksi_obat.obat_id_obat', '=', 'obat.id_obat')->first();
+        $stok = $obat->stok;
+        $pesanan = $transaksi->jumlah;
+        $jumlah = $stok - $pesanan;
         $transaksi->validasi = "Berhasil";
         $transaksi->save();
+
+        $obat->stok = $jumlah;
+        $obat->save();
+
         return redirect('/admin/pesanan');
     }
 
