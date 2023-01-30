@@ -1,0 +1,52 @@
+version: "3.5"
+
+services:
+  #be service
+  laravel-example:
+    container_name: laravel-example
+    ports:
+      - "8009:80"
+      - "8007:8000"
+  #  volumes:
+  #    - be-lumen:/app/public
+    build: .
+    networks:
+      laravel-example:
+        aliases:
+          - laravel-example
+    external_links:
+      - laravel-example:laravel-example
+      #- cms-laravel-example-react-js_cms_sales_tap_1:cms
+    restart: always
+  #db service
+  db:
+    container_name: db-laravel
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+      MYSQL_DATABASE: crud
+      MYSQL_PASSWORD: qwerty
+      MYSQL_USER: admin
+    volumes:
+      - db-laravel-example:/var/lib/mysql
+    networks:
+      - laravel-example
+  #db admin service
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8089:8080
+    networks:
+      - laravel-example
+
+networks:
+  laravel-example:
+    name: laravel-example
+
+volumes:
+  be-lumen:
+  db-laravel-example:
